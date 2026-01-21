@@ -806,3 +806,4 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = mobileMenuStyles;
 
 document.head.appendChild(styleSheet);
+
