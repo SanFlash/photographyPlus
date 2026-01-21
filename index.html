@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography+ | Cinematic Visual Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Shutter Loading Screen -->
+    <div class="shutter-loader">
+        <div class="aperture">
+            <div class="blade blade-1"></div>
+            <div class="blade blade-2"></div>
+            <div class="blade blade-3"></div>
+            <div class="blade blade-4"></div>
+            <div class="blade blade-5"></div>
+            <div class="blade blade-6"></div>
+        </div>
+        <div class="loading-text">
+            <span class="focus-ring"></span>
+            <span class="loading-percentage">0%</span>
+        </div>
+        <div class="brand-loading">
+            <h1 class="logo-text">Photography<span class="plus">+</span></h1>
+            <p class="tagline">Capturing moments, creating memories</p>
+        </div>
+    </div>
+
+    <!-- Viewfinder Overlay -->
+    <div class="viewfinder-overlay">
+        <div class="viewfinder-frame">
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- Camera Mode Dial Navigation -->
+    <div id="cameraBar" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:70px;
+background:rgba(8,8,18,.9);
+backdrop-filter:blur(12px);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+border-bottom:1px solid rgba(255,255,255,.08);
+z-index:999;
+">
+
+        <!-- BRAND -->
+
+        <div style="
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:600;
+letter-spacing:1px;
+color:#facc15;
+font-size:18px;
+">
+
+            <i class="fa-solid fa-camera-retro"></i>
+            Photography+
+
+        </div>
+
+        <!-- LINKS -->
+
+        <div id="navLinks" style="
+display:flex;
+gap:22px;
+">
+
+            <div class="navBtn active" data-target="home"
+                style="cursor:pointer;padding:8px 10px;font-size:14px;color:#ef4444;border-bottom:2px solid #ef4444;">
+                HOME
+            </div>
+
+            <div class="navBtn" data-target="services"
+                style="cursor:pointer;padding:8px 10px;font-size:14px;color:white;">
+                SERVICES
+            </div>
+
+            <div class="navBtn" data-target="portfolio"
+                style="cursor:pointer;padding:8px 10px;font-size:14px;color:white;">
+                PORTFOLIO
+            </div>
+
+            <div class="navBtn" data-target="about" style="cursor:pointer;padding:8px 10px;font-size:14px;color:white;">
+                ABOUT
+            </div>
+
+            <div class="navBtn" data-target="contact"
+                style="cursor:pointer;padding:8px 10px;font-size:14px;color:white;">
+                CONTACT
+            </div>
+
+        </div>
+
+        <!-- RIGHT CONTROLS -->
+
+        <div style="display:flex;align-items:center;gap:15px;">
+
+            <!-- ISO -->
+
+            <div id="isoBox" style="
+background:rgba(255,255,255,.06);
+padding:6px 12px;
+border-radius:8px;
+border:1px solid rgba(255,255,255,.1);
+font-size:12px;
+">
+                ISO 100
+            </div>
+
+            <!-- MOBILE MENU BUTTON -->
+
+            <div id="menuBtn" style="
+display:none;
+width:36px;
+height:36px;
+border-radius:8px;
+background:#facc15;
+color:#020617;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MOBILE DROPDOWN -->
+
+    <div id="mobileMenu" style="
+position:fixed;
+top:70px;
+left:0;
+width:100%;
+background:#020617;
+display:none;
+flex-direction:column;
+border-bottom:1px solid rgba(255,255,255,.1);
+z-index:998;
+">
+
+        <div class="mobileBtn" data-target="home"
+            style="padding:15px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;">HOME
+        </div>
+
+        <div class="mobileBtn" data-target="services"
+            style="padding:15px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;">
+            SERVICES</div>
+
+        <div class="mobileBtn" data-target="portfolio"
+            style="padding:15px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;">
+            PORTFOLIO</div>
+
+        <div class="mobileBtn" data-target="about"
+            style="padding:15px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;">ABOUT
+        </div>
+
+        <div class="mobileBtn" data-target="contact" style="padding:15px;text-align:center;cursor:pointer;">CONTACT
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Mouse Follow Spotlight -->
+    <div class="cursor-spotlight"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section active-section">
+            <div class="film-grain-overlay"></div>
+            <div class="light-leak"></div>
+
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Through The</span>
+                    <span class="title-line">Lens of</span>
+                    <span class="title-line">Creativity</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Where every click tells a story, and every frame is a masterpiece waiting to be discovered.
+                </p>
+
+                <div class="hero-cta">
+                    <button class="btn-aperture" id="exploreBtn">
+                        <span class="btn-text">Explore Gallery</span>
+                        <div class="aperture-ring"></div>
+                    </button>
+                    <button class="btn-shutter" id="bookSession">
+                        <span class="btn-text">Book Session</span>
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+
+                <div class="camera-stats">
+                    <div class="stat">
+                        <div class="stat-number" data-count="1500">0</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="500">0</div>
+                        <div class="stat-label">Clients</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="50">0</div>
+                        <div class="stat-label">Awards</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="15">0</div>
+                        <div class="stat-label">Years</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>Scroll to focus</span>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="section-header">
+                <h2 class="section-title">Our <span class="highlight">Services</span></h2>
+                <p class="section-subtitle">Professional photography services for every occasion</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card" data-service="wedding">
+                    <div class="card-front">
+                        <div class="card-icon">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <h3 class="card-title">Wedding Photography</h3>
+                        <p class="card-excerpt">Capturing the most precious moments of your special day</p>
+                        <div class="card-meta">
+                            <span class="price">Starting at $2,500</span>
+                            <span class="duration">Full Day Coverage</span>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>Pre-wedding consultation</li>
+                            <li>Full day coverage (up to 10 hours)</li>
+                            <li>Two photographers</li>
+                            <li>500+ edited photos</li>
+                            <li>Online gallery</li>
+                            <li>Premium photo album</li>
+                        </ul>
+                        <button class="btn-book" data-service="wedding">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card" data-service="fashion">
+                    <div class="card-front">
+                        <div class="card-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3 class="card-title">Fashion & Portfolio</h3>
+                        <p class="card-excerpt">Professional shoots for models and brands</p>
+                        <div class="card-meta">
+                            <span class="price">Starting at $800</span>
+                            <span class="duration">3 Hour Session</span>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>Concept development</li>
+                            <li>Professional lighting setup</li>
+                            <li>3 outfit changes</li>
+                            <li>200+ edited photos</li>
+                            <li>Digital retouching</li>
+                            <li>Commercial usage rights</li>
+                        </ul>
+                        <button class="btn-book" data-service="fashion">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card" data-service="events">
+                    <div class="card-front">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-star"></i>
+                        </div>
+                        <h3 class="card-title">Corporate Events</h3>
+                        <p class="card-excerpt">Professional coverage for business events</p>
+                        <div class="card-meta">
+                            <span class="price">Starting at $1,200</span>
+                            <span class="duration">4 Hour Minimum</span>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>Event planning consultation</li>
+                            <li>Multiple photographers</li>
+                            <li>Candid and posed shots</li>
+                            <li>Quick turnaround</li>
+                            <li>Digital delivery</li>
+                            <li>Print-ready files</li>
+                        </ul>
+                        <button class="btn-book" data-service="events">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card" data-service="portrait">
+                    <div class="card-front">
+                        <div class="card-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 class="card-title">Portrait Sessions</h3>
+                        <p class="card-excerpt">Personal and professional portrait photography</p>
+                        <div class="card-meta">
+                            <span class="price">Starting at $350</span>
+                            <span class="duration">90 Minute Session</span>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>Location scouting</li>
+                            <li>Professional guidance</li>
+                            <li>2 outfit changes</li>
+                            <li>50+ edited photos</li>
+                            <li>Online gallery</li>
+                            <li>Print release</li>
+                        </ul>
+                        <button class="btn-book" data-service="portrait">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Gallery -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="section-header">
+                <h2 class="section-title">Portfolio <span class="highlight">Gallery</span></h2>
+                <p class="section-subtitle">Explore our curated collection of visual stories</p>
+            </div>
+
+            <div class="gallery-controls">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Work</button>
+                    <button class="filter-btn" data-filter="wedding">Wedding</button>
+                    <button class="filter-btn" data-filter="fashion">Fashion</button>
+                    <button class="filter-btn" data-filter="corporate">Corporate</button>
+                    <button class="filter-btn" data-filter="portrait">Portrait</button>
+                </div>
+
+                <div class="gallery-view">
+                    <button class="view-btn active" data-view="masonry">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="grid">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="gallery-container" id="galleryContainer">
+                <!-- Gallery items will be loaded dynamically -->
+            </div>
+
+            <div class="load-more-container">
+                <button class="btn-load-more" id="loadMore">
+                    <span>Load More</span>
+                    <div class="loading-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="section-header">
+                <h2 class="section-title">Client <span class="highlight">Testimonials</span></h2>
+                <p class="section-subtitle">What our clients say about our work</p>
+            </div>
+
+            <div class="testimonial-carousel">
+                <div class="carousel-track">
+                    <!-- Testimonials will be added dynamically -->
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots"></div>
+                    <button class="carousel-btn next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="contact" class="booking-section">
+            <div class="section-header">
+                <h2 class="section-title">Book Your <span class="highlight">Session</span></h2>
+                <p class="section-subtitle">Let's create something amazing together</p>
+            </div>
+
+            <div class="booking-container">
+                <div class="booking-form">
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user"></i> Full Name
+                            </label>
+                            <input type="text" id="name" required placeholder="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> Email Address
+                            </label>
+                            <input type="email" id="email" required placeholder="john@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">
+                                <i class="fas fa-camera"></i> Service Type
+                            </label>
+                            <select id="service" required>
+                                <option value="">Select a service</option>
+                                <option value="wedding">Wedding Photography</option>
+                                <option value="fashion">Fashion & Portfolio</option>
+                                <option value="corporate">Corporate Events</option>
+                                <option value="portrait">Portrait Session</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">
+                                <i class="fas fa-calendar"></i> Preferred Date
+                            </label>
+                            <input type="date" id="date" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">
+                                <i class="fas fa-comment"></i> Tell us about your project
+                            </label>
+                            <textarea id="message" rows="4"
+                                placeholder="Describe your vision, location preferences, and any special requirements..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <span>Capture This Moment</span>
+                            <div class="shutter-animation">
+                                <div class="shutter-blade"></div>
+                                <div class="shutter-blade"></div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="booking-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Response Time</h3>
+                        <p>We typically respond within 24 hours to discuss your project in detail.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Availability</h3>
+                        <p>Weekends book quickly! We recommend booking at least 2-3 months in advance.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Custom Packages</h3>
+                        <p>Need something special? Contact us for custom quotes and packages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2 class="footer-logo">Photography<span class="plus">+</span></h2>
+                <p class="footer-tagline">Redefining visual storytelling since 2009</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="link-group">
+                    <h3>Services</h3>
+                    <a href="#services" data-service="wedding">Wedding Photography</a>
+                    <a href="#services" data-service="fashion">Fashion Photography</a>
+                    <a href="#services" data-service="corporate">Corporate Events</a>
+                    <a href="#services" data-service="portrait">Portrait Sessions</a>
+                </div>
+
+                <div class="link-group">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Studio Street, City</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@photographyplus.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Photography+. All rights reserved.</p>
+            <div class="footer-extra">
+                <a href="#" id="adminLogin">Admin Login</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Book Your Session</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Booking form content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminLoginModal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-lock"></i> Admin Access</h3>
+            </div>
+            <div class="modal-body">
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn-auth">
+                        <span>Access Dashboard</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const navBtns = document.querySelectorAll(".navBtn");
+        const mobileBtns = document.querySelectorAll(".mobileBtn");
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const navLinks = document.getElementById("navLinks");
+        const isoBox = document.getElementById("isoBox");
+
+        // RESPONSIVE HANDLER
+
+        function handleResize() {
+
+            if (window.innerWidth < 768) {
+
+                navLinks.style.display = "none";
+                isoBox.style.display = "none";
+                menuBtn.style.display = "flex";
+
+            } else {
+
+                navLinks.style.display = "flex";
+                isoBox.style.display = "block";
+                menuBtn.style.display = "none";
+                mobileMenu.style.display = "none";
+
+            }
+
+        }
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        // MOBILE MENU TOGGLE
+
+        menuBtn.addEventListener("click", () => {
+
+            mobileMenu.style.display =
+                mobileMenu.style.display === "flex" ? "none" : "flex";
+
+        });
+
+        // SCROLL FUNCTION
+
+        function scrollToSection(id) {
+
+            const target = document.getElementById(id);
+
+            window.scrollTo({
+                top: target.offsetTop,
+                behavior: "smooth"
+            });
+
+            mobileMenu.style.display = "none";
+        }
+
+        // DESKTOP CLICK
+
+        navBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                scrollToSection(btn.dataset.target);
+            });
+        });
+
+        // MOBILE CLICK
+
+        mobileBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                scrollToSection(btn.dataset.target);
+            });
+        });
+
+        // ACTIVE STATE TRACKING
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            document.querySelectorAll("div[id]").forEach(sec => {
+                if (scrollY >= sec.offsetTop - 150) {
+                    current = sec.id;
+                }
+            });
+
+            navBtns.forEach(btn => {
+
+                btn.style.color = "white";
+                btn.style.borderBottom = "none";
+
+                if (btn.dataset.target === current) {
+                    btn.style.color = "#ef4444";
+                    btn.style.borderBottom = "2px solid #ef4444";
+                }
+
+            });
+
+        });
+
+
+    </script>
+
+    <script src="animation-library.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
