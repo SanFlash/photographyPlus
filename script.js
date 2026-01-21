@@ -31,7 +31,7 @@ class PhotographyPlus {
         
         let progress = 0;
         const interval = setInterval(() => {
-            progress += Math.random() * 20;
+            progress += Math.random() * 12;
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(interval);
@@ -804,4 +804,5 @@ const mobileMenuStyles = `
 // Inject mobile menu styles
 const styleSheet = document.createElement('style');
 styleSheet.textContent = mobileMenuStyles;
+
 document.head.appendChild(styleSheet);
